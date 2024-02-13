@@ -1,15 +1,7 @@
-import React from 'react'
-import AddProduct from './components/addproduct/AddProduct'
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button';
+import React from "react";
+import AddProduct from "./components/addproduct/AddProduct";
 function App() {
-  return (
-    <>
-    <AddProduct ps ="hello"></AddProduct>
-    
-    </>
-  )
+  return <AddProduct />;
 }
 
-
-export default App
+export default App;
