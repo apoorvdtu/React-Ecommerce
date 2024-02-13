@@ -1,13 +1,11 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { fetchProductsFromLocalStorage, Product } from '../utilities/Product';
-function saveProductsInLocalStorage(product){
-    const products = fetchProductsFromLocalStorage();
-    products.push(product);
-    localStorage.setItem('products',JSON.stringify(products));
-}
+import { PRODUCTS_DEFAULT_INITIAL_VALUE, PRODUCTS_LOCAL_STORAGE_KEY, useLocalStorageHook } from '../utilities/constant';
+import { Product } from '../utilities/Product';
+
 function AddProductForm() {
+    const[products,setProducts] = useLocalStorageHook(PRODUCTS_LOCAL_STORAGE_KEY,PRODUCTS_DEFAULT_INITIAL_VALUE);
     function handleAddProductForm(event){
         event.preventDefault();
         const productDetailsObj = {
@@ -19,7 +17,7 @@ function AddProductForm() {
             productImgSrc:'/ef'
         };
         const product = new Product(productDetailsObj);
-        saveProductsInLocalStorage(product);
+        setProducts([...products,product]);
         event.target.reset();
     }
     return (
