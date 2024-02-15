@@ -2,64 +2,22 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 import { useReducer, useCallback } from "react";
-import { useLocalStorageHook } from "../utilities/constant";
+import { useProducts } from "../../hooks/useProducts.js";
+import { productReducer } from "./reducer.js";
 
-import { Product } from "../utilities/Product";
+import { addProductFormValidation, initializeProduct } from "./helper.js";
 
 import {
-  PRODUCTS_DEFAULT_INITIAL_VALUE,
-  PRODUCTS_LOCAL_STORAGE_KEY,
+  ACTIONS,
+  EventIDActionsType,
   PRODUCT_ADDITION_FAILURE_MESSAGE,
   PRODUCT_ADDITION_SUCCESS_MESSAGE,
-} from "../utilities/constant";
-
-const ACTIONS = {
-  CHANGE_PRODUCT_NAME: "CHANGE_PRODUCT_NAME",
-  CHANGE_PRODUCT_CATEGORY: "CHANGE_PRODUCT_CATEGORY",
-  CHANGE_PRODUCT_ORIGINAL_PRICE: "CHANGE_PRODUCT_ORIGINAL_PRICE",
-  CHANGE_PRODUCT_DISCOUNT_PRICE: "CHANGE_PRODUCT_DISCOUNT_PRICE",
-  CHANGE_PRODUCT_STOCK_UNITS: "CHANGE_PRODUCT_STOCK_UNITS",
-  INITIALIZE_NEW_PRODUCT: "INITIALIZE_NEW_PRODUCT",
-};
-
-function productReducer(state, action) {
-  switch (action.type) {
-    case ACTIONS.CHANGE_PRODUCT_NAME:
-      return { ...state, productName: action.payload };
-    case ACTIONS.CHANGE_PRODUCT_CATEGORY:
-      return { ...state, productCategory: action.payload };
-    case ACTIONS.CHANGE_PRODUCT_ORIGINAL_PRICE:
-      return { ...state, productOriginalPrice: +action.payload };
-    case ACTIONS.CHANGE_PRODUCT_DISCOUNT_PRICE:
-      return { ...state, productDiscountPrice: +action.payload };
-    case ACTIONS.CHANGE_PRODUCT_STOCK_UNITS:
-      return { ...state, productStockUnits: +action.payload };
-    case ACTIONS.INITIALIZE_NEW_PRODUCT:
-      return initializeProduct();
-    default:
-      return state;
-  }
-}
-
-const initializeProduct = () => {
-  return new Product();
-};
-
-const addProductFormValidation = (product) => {
-  const { productName, productOriginalPrice, productDiscountPrice, productStockUnits } = product;
-  return (
-    productName.trim().length !== 0 &&
-    !Number.isNaN(+productOriginalPrice) &&
-    !Number.isNaN(+productDiscountPrice) &&
-    !Number.isNaN(+productStockUnits)
-  );
-};
+  PRODUCT_CATEGORY_OPTIONS,
+  PRODUCT_FORM_IDS,
+} from "./constants.js";
 
 function AddProductForm() {
-  const [products, setProducts] = useLocalStorageHook(
-    PRODUCTS_LOCAL_STORAGE_KEY,
-    PRODUCTS_DEFAULT_INITIAL_VALUE
-  );
+  const [products, setProducts] = useProducts();
 
   const [product, dispatch] = useReducer(productReducer, {}, initializeProduct);
 
@@ -76,7 +34,7 @@ function AddProductForm() {
       event.preventDefault();
       if (addProductFormValidation(product)) {
         setProducts([...products, product]);
-        dispatch({ type: ACTIONS.INITIALIZE_NEW_PRODUCT });
+        dispatch({ type: ACTIONS.RESET_STATE });
         alert(PRODUCT_ADDITION_SUCCESS_MESSAGE);
       } else {
         alert(PRODUCT_ADDITION_FAILURE_MESSAGE);
@@ -85,69 +43,72 @@ function AddProductForm() {
     [products, product]
   );
 
-  const handleOnChangeProductName = useCallback((event) => {
-    dispatch({ type: ACTIONS.CHANGE_PRODUCT_NAME, payload: event.target.value });
-  }, []);
-
-  const handleOnChangeProductOriginalPrice = useCallback((event) => {
-    dispatch({ type: ACTIONS.CHANGE_PRODUCT_ORIGINAL_PRICE, payload: event.target.value });
-  }, []);
-
-  const handleOnChangeProductDiscountPrice = useCallback((event) => {
-    dispatch({ type: ACTIONS.CHANGE_PRODUCT_DISCOUNT_PRICE, payload: event.target.value });
-  }, []);
-
-  const handleOnChangeProductStockUnits = useCallback((event) => {
-    dispatch({ type: ACTIONS.CHANGE_PRODUCT_STOCK_UNITS, payload: event.target.value });
-  }, []);
-
-  const handleOnChangeProductCategory = useCallback((event) => {
-    dispatch({ type: ACTIONS.CHANGE_PRODUCT_CATEGORY, payload: event.target.value });
-  }, []);
+  const handleFormElementChange = useCallback(
+    (event) => {
+      const payload = event.target.value;
+      const id = event.target.id;
+      const type = EventIDActionsType.get(id);
+      dispatch({ type, payload });
+    },
+    [dispatch]
+  );
 
   return (
     <Form onSubmit={handleAddProductForm}>
-      <Form.Group className="mb-3" controlId="productName" aria-label="Product Name">
+      <Form.Group
+        className="mb-3"
+        controlId={PRODUCT_FORM_IDS.productName}
+        aria-label="Product Name"
+      >
         <Form.Label>Product Name</Form.Label>
         <Form.Control
-          onChange={handleOnChangeProductName}
+          onChange={handleFormElementChange}
           value={productName}
           type="text"
           placeholder="Enter Product Name"
         />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="productCategory" aria-label="Product Category">
+      <Form.Group
+        className="mb-3"
+        controlId={PRODUCT_FORM_IDS.productCategory}
+        aria-label="Product Category"
+      >
         <Form.Label>Product Category</Form.Label>
-        <Form.Select value={productCategory} onChange={handleOnChangeProductCategory} required>
-          <option value="mobiles">Mobiles</option>
-          <option value="tvs">TVs</option>
+        <Form.Select value={productCategory} onChange={handleFormElementChange} required>
+          {PRODUCT_CATEGORY_OPTIONS.map(({ label, value }) => {
+            return (
+              <option key={value} value={value}>
+                {label}
+              </option>
+            );
+          })}
         </Form.Select>
       </Form.Group>
-      <Form.Group className="mb-3" controlId="productOriginalPrice">
+      <Form.Group className="mb-3" controlId={PRODUCT_FORM_IDS.productOriginalPrice}>
         <Form.Label>Product Original Price</Form.Label>
         <Form.Control
           value={productOriginalPrice}
-          onChange={handleOnChangeProductOriginalPrice}
+          onChange={handleFormElementChange}
           required
           type="number"
           placeholder="Enter Product Original Price"
         />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="productDiscountPrice">
+      <Form.Group className="mb-3" controlId={PRODUCT_FORM_IDS.productDiscountPrice}>
         <Form.Label>Product Discount Price</Form.Label>
         <Form.Control
           value={productDiscountPrice}
-          onChange={handleOnChangeProductDiscountPrice}
+          onChange={handleFormElementChange}
           required
           type="number"
           placeholder="Enter Product Discount Price"
         />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="productStockUnits">
+      <Form.Group className="mb-3" controlId={PRODUCT_FORM_IDS.productStockUnits}>
         <Form.Label>Product Stock Units</Form.Label>
         <Form.Control
           value={productStockUnits}
-          onChange={handleOnChangeProductStockUnits}
+          onChange={handleFormElementChange}
           required
           type="number"
           placeholder="Enter Product Stock Units"
