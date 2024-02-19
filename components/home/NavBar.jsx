@@ -7,12 +7,13 @@ import { routerLinks } from "../../routerConfig.js";
 import EcomLogo from "../../assets/EcomLogo.png";
 import SearchIcon from "./assets/searchicon.svg";
 import ShoppingCartIcon from "./assets/shoppingcart.png";
-import LoginIcon from "./assets/login.png";
+
 import AddNewProductIcon from "./assets/addnewproduct.png";
+import LoginIcon from "./assets/login.png";
 
 import "./NavBar.css";
 
-function NavBar() {
+export const NavBar = () => {
   const [cart] = useCart();
   return (
     <nav className="nav">
@@ -56,6 +57,7 @@ function NavBar() {
           <span>Cart</span>
         </div>
       </Link>
+
       <Link to={routerLinks.ADD_PRODUCT.path}>
         <div className="nav__add-product">
           <img
@@ -69,6 +71,4 @@ function NavBar() {
       </Link>
     </nav>
   );
-}
-
-export default NavBar;
+};

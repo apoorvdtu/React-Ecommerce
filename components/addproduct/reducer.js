@@ -17,6 +17,6 @@ export const productReducer = (state, action) => {
     case ACTIONS.RESET_STATE:
       return initializeProduct();
     default:
-      throw new Error(`Unhandled ACTION.TYPE : ${action.type}`);
+      return state;
   }
 };

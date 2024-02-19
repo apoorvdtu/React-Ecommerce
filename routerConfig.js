@@ -1,9 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
+// import { lazy } from "react";
 
-import AddProduct from "./pages/AddProduct";
-import Home from "./pages/Home";
-import ErrorPage from "./pages/ErrorPage";
-import App from "./App";
+import { Home } from "./pages/Home";
+import { ErrorPage } from "./pages/ErrorPage";
+import { App } from "./App";
+// const AddProduct = lazy(() =>
+//   import("./pages/AddProduct").then((module) => ({ default: module.AddProduct }))
+// );
+// const AddProduct = lazy(() => import("./pages/AddProduct"));
+// const ErrorPage = lazy(() => import("./pages/ErrorPage"));
+import { AddProduct } from "./pages/AddProduct";
 
 export const routerLinks = {
   ADD_PRODUCT: {

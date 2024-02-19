@@ -1,6 +1,7 @@
 import { createContext, useContext } from "react";
 
 export const ProductsContext = createContext(null);
+
 export const useProducts = () => {
   const context = useContext(ProductsContext);
   if (!context) {

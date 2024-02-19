@@ -5,7 +5,7 @@ import { ACTIONS } from "./constants.js";
 
 import "./ProductCard.css";
 
-export function ProductCard({ product }) {
+export const ProductCard = ({ product }) => {
   const [, dispatch] = useCart();
 
   const handleAddToCart = () => {
@@ -45,4 +45,4 @@ export function ProductCard({ product }) {
       </button>
     </div>
   );
-}
+};

@@ -3,7 +3,7 @@ import { ProductCard } from "./ProductCard.jsx";
 
 import "./Products.css";
 
-function Products({ categoryName, products }) {
+export const Products = ({ categoryName, products }) => {
   return (
     <div className="products">
       <div className="products__wrapper-name">
@@ -16,6 +16,4 @@ function Products({ categoryName, products }) {
       </div>
     </div>
   );
-}
-
-export default Products;
+};

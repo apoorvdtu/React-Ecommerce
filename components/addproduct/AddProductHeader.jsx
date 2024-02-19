@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 
-import Image from "react-bootstrap/Image";
-
 import { routerLinks } from "../../routerConfig.js";
+
+import Image from "react-bootstrap/Image";
 
 import EcomLogo from "../../assets/EcomLogo.png";
 
-function AddProductHeader() {
+export const AddProductHeader = () => {
   return (
     <div className="text-center">
       <Link to={routerLinks.HOME.path}>
@@ -14,5 +14,4 @@ function AddProductHeader() {
       </Link>
     </div>
   );
-}
-export default AddProductHeader;
+};

@@ -1,14 +1,13 @@
 /* eslint-disable react/prop-types */
 import { ProductsContext, useProducts } from "../hooks/useProducts.js";
 
-import NavBar from "../components/home/NavBar.jsx";
-import Products from "../components/home/Products.jsx";
+import { NavBar, Products } from "../components/home";
 
 import { PRODUCT_CATEGORY_OPTIONS } from "../components/addProduct/constants.js";
 
 import "../App.css";
 
-function Home() {
+export function Home() {
   const [products] = useProducts(ProductsContext);
 
   const categoryWiseProducts = PRODUCT_CATEGORY_OPTIONS.map(({ value }) => {
@@ -27,5 +26,3 @@ function Home() {
     </>
   );
 }
-
-export default Home;

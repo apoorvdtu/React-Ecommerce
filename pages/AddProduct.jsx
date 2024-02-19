@@ -1,12 +1,10 @@
-import AddProductForm from "../components/addProduct/AddProductForm";
-import AddProductHeader from "../components/addProduct/AddProductHeader";
+import { AddProductFormContainer, AddProductHeader } from "../components/addProduct";
 
-function AddProduct() {
+export function AddProduct() {
   return (
     <>
       <AddProductHeader />
-      <AddProductForm />;
+      <AddProductFormContainer />;
     </>
   );
 }
-export default AddProduct;

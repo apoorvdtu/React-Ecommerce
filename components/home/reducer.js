@@ -2,7 +2,7 @@ import { addToCart, deleteFromCart, resetCart, removeFromCart } from "./helper.j
 
 import { ACTIONS } from "./constants.js";
 
-export function cartReducer(state, action) {
+export const cartReducer = (state, action) => {
   switch (action.type) {
     case ACTIONS.ADD_TO_CART:
       return addToCart(state, action.payload);
@@ -13,6 +13,6 @@ export function cartReducer(state, action) {
     case ACTIONS.RESET_STATE:
       return resetCart();
     default:
-      throw new Error(`Unhandled ACTION.TYPE : ${action.type}`);
+      return state;
   }
-}
+};

@@ -1,26 +1,10 @@
+/* eslint-disable react/prop-types */
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-import { useReducer, useCallback } from "react";
-import { useProducts } from "../../hooks/useProducts.js";
-import { productReducer } from "./reducer.js";
+import { PRODUCT_CATEGORY_OPTIONS, PRODUCT_FORM_IDS } from "./constants.js";
 
-import { addProductFormValidation, initializeProduct } from "./helper.js";
-
-import {
-  ACTIONS,
-  EventIDActionsType,
-  PRODUCT_ADDITION_FAILURE_MESSAGE,
-  PRODUCT_ADDITION_SUCCESS_MESSAGE,
-  PRODUCT_CATEGORY_OPTIONS,
-  PRODUCT_FORM_IDS,
-} from "./constants.js";
-
-function AddProductForm() {
-  const [products, setProducts] = useProducts();
-
-  const [product, dispatch] = useReducer(productReducer, {}, initializeProduct);
-
+export const AddProductForm = ({ product, handleAddProductForm, handleFormElementChange }) => {
   const {
     productName,
     productOriginalPrice,
@@ -28,36 +12,11 @@ function AddProductForm() {
     productCategory,
     productStockUnits,
   } = product;
-
-  const handleAddProductForm = useCallback(
-    (event) => {
-      event.preventDefault();
-      if (addProductFormValidation(product)) {
-        setProducts([...products, product]);
-        dispatch({ type: ACTIONS.RESET_STATE });
-        alert(PRODUCT_ADDITION_SUCCESS_MESSAGE);
-      } else {
-        alert(PRODUCT_ADDITION_FAILURE_MESSAGE);
-      }
-    },
-    [products, product]
-  );
-
-  const handleFormElementChange = useCallback(
-    (event) => {
-      const payload = event.target.value;
-      const id = event.target.id;
-      const type = EventIDActionsType.get(id);
-      dispatch({ type, payload });
-    },
-    [dispatch]
-  );
-
   return (
     <Form onSubmit={handleAddProductForm}>
       <Form.Group
         className="mb-3"
-        controlId={PRODUCT_FORM_IDS.productName}
+        controlId={PRODUCT_FORM_IDS.PRODUCT_NAME}
         aria-label="Product Name"
       >
         <Form.Label>Product Name</Form.Label>
@@ -70,7 +29,7 @@ function AddProductForm() {
       </Form.Group>
       <Form.Group
         className="mb-3"
-        controlId={PRODUCT_FORM_IDS.productCategory}
+        controlId={PRODUCT_FORM_IDS.PRODUCT_CATEGORY}
         aria-label="Product Category"
       >
         <Form.Label>Product Category</Form.Label>
@@ -84,7 +43,7 @@ function AddProductForm() {
           })}
         </Form.Select>
       </Form.Group>
-      <Form.Group className="mb-3" controlId={PRODUCT_FORM_IDS.productOriginalPrice}>
+      <Form.Group className="mb-3" controlId={PRODUCT_FORM_IDS.PRODUCT_ORIGINAL_PRICE}>
         <Form.Label>Product Original Price</Form.Label>
         <Form.Control
           value={productOriginalPrice}
@@ -94,7 +53,7 @@ function AddProductForm() {
           placeholder="Enter Product Original Price"
         />
       </Form.Group>
-      <Form.Group className="mb-3" controlId={PRODUCT_FORM_IDS.productDiscountPrice}>
+      <Form.Group className="mb-3" controlId={PRODUCT_FORM_IDS.PRODUCT_DISCOUNT_PRICE}>
         <Form.Label>Product Discount Price</Form.Label>
         <Form.Control
           value={productDiscountPrice}
@@ -104,7 +63,7 @@ function AddProductForm() {
           placeholder="Enter Product Discount Price"
         />
       </Form.Group>
-      <Form.Group className="mb-3" controlId={PRODUCT_FORM_IDS.productStockUnits}>
+      <Form.Group className="mb-3" controlId={PRODUCT_FORM_IDS.PRODUCT_STOCK_UNITS}>
         <Form.Label>Product Stock Units</Form.Label>
         <Form.Control
           value={productStockUnits}
@@ -119,6 +78,4 @@ function AddProductForm() {
       </Button>
     </Form>
   );
-}
-
-export default AddProductForm;
+};
