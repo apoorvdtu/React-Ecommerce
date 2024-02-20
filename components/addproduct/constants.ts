@@ -6,7 +6,6 @@ export const ACTIONS = {
   CHANGE_PRODUCT_STOCK_UNITS: "CHANGE_PRODUCT_STOCK_UNITS",
   RESET_STATE: "RESET_STATE",
 };
-
 export const PRODUCT_FORM_IDS = {
   PRODUCT_NAME: "productName",
   PRODUCT_CATEGORY: "productCategory",

@@ -1,4 +1,4 @@
-import { useReducer, useCallback } from "react";
+import React,{ useReducer, useCallback } from "react";
 import { useProducts } from "../../hooks/useProducts.js";
 import { productReducer } from "./reducer.js";
 
@@ -10,15 +10,15 @@ import {
 } from "./constants.js";
 
 import { addProductFormValidation, initializeProduct } from "./helper.js";
-import { AddProductForm } from "./AddProductForm.jsx";
+import { AddProductForm } from "./AddProductForm.tsx";
 
 export const AddProductFormContainer = () => {
   const [products, setProducts] = useProducts();
 
-  const [product, dispatch] = useReducer(productReducer, {}, initializeProduct);
+  const [product, dispatch] = useReducer(productReducer,{}, initializeProduct);
 
   const handleAddProductForm = useCallback(
-    (event) => {
+    (event: React.FormEvent) => {
       event.preventDefault();
       if (addProductFormValidation(product)) {
         setProducts([...products, product]);
@@ -35,7 +35,7 @@ export const AddProductFormContainer = () => {
     (event) => {
       const payload = event.target.value;
       const id = event.target.id;
-      const type = EventIDActionsType.get(id);
+      const type: string = EventIDActionsType.get(id)!;
       dispatch({ type, payload });
     },
     [dispatch]

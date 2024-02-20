@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
-import { ProductsContext, useProducts } from "../hooks/useProducts.js";
+import { ProductsContext, useProducts } from "../hooks/useProducts";
 
 import { NavBar, Products } from "../components/home";
 
-import { PRODUCT_CATEGORY_OPTIONS } from "../components/addProduct/constants.js";
+import { PRODUCT_CATEGORY_OPTIONS } from "../components/addProduct/constants";
 
 import "../App.css";
 

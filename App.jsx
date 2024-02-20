@@ -1,7 +1,7 @@
 import { useReducer } from "react";
 import { Outlet } from "react-router";
 
-import { ProductsContext } from "./hooks/useProducts.js";
+import { ProductsContext } from "./hooks/useProducts";
 import { useLocalStorage } from "./hooks/useLocalStorage.js";
 import { CartContext } from "./hooks/useCart.js";
 

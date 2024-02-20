@@ -1,6 +1,7 @@
 import { PRODUCT_CATEGORY_OPTIONS } from "./constants.js";
+import { Product } from "./interface.js";
 
-export const addProductFormValidation = (product) => {
+export const addProductFormValidation = (product: Product) => {
   const { productName, productOriginalPrice, productDiscountPrice, productStockUnits } = product;
   return (
     productName.trim().length !== 0 &&
