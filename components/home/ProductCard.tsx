@@ -1,11 +1,16 @@
 /* eslint-disable react/prop-types */
-import { useCart } from "../../hooks/useCart.js";
+import React from "react";
 
-import { ACTIONS } from "./constants.js";
+import { useCart } from "../../hooks/useCart.ts";
+import { Product } from "../addProduct/interface.ts";
+
+import { ACTIONS } from "./constants.ts";
 
 import "./ProductCard.css";
-
-export const ProductCard = ({ product }) => {
+type ProductCardProps = {
+  product: Product;
+};
+export const ProductCard = ({ product }: ProductCardProps) => {
   const [, dispatch] = useCart();
 
   const handleAddToCart = () => {

@@ -3,16 +3,16 @@ import { initializeProduct } from "./helper.js";
 import { ACTIONS } from "./constants.ts";
 import { Product } from "./interface.ts";
 
-type ProductAction = {
+export type ProductAction = {
   type: string;
   payload?: string;
 };
-export const productReducer = (state: Product, action: ProductAction) => {
+export const productReducer = (state: Product, action: ProductAction): Product => {
   switch (action.type) {
     case ACTIONS.CHANGE_PRODUCT_NAME:
-      return { ...state, productName: action.payload };
+      return { ...state, productName: action.payload! };
     case ACTIONS.CHANGE_PRODUCT_CATEGORY:
-      return { ...state, productCategory: action.payload };
+      return { ...state, productCategory: action.payload! };
     case ACTIONS.CHANGE_PRODUCT_ORIGINAL_PRICE:
       return { ...state, productOriginalPrice: +action.payload! };
     case ACTIONS.CHANGE_PRODUCT_DISCOUNT_PRICE:

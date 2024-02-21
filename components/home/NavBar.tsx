@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-
-import { useCart } from "../../hooks/useCart.js";
+import React from "react";
+import { useCart } from "../../hooks/useCart.ts";
 
 import { routerLinks } from "../../routerConfig.js";
 
@@ -37,7 +37,7 @@ export const NavBar = () => {
       </div>
       <div className="nav__login">
         <img className="nav__login-icon" src={LoginIcon} alt="Login Icon" aria-hidden="true" />
-        <div className="nav__login-btn" role="button" tabIndex="0">
+        <div className="nav__login-btn" role="button" tabIndex={0}>
           Login
         </div>
       </div>

@@ -1,4 +1,4 @@
-import React,{ useReducer, useCallback } from "react";
+import React, { useReducer, useCallback } from "react";
 import { useProducts } from "../../hooks/useProducts.js";
 import { productReducer } from "./reducer.js";
 
@@ -15,8 +15,8 @@ import { AddProductForm } from "./AddProductForm.tsx";
 export const AddProductFormContainer = () => {
   const [products, setProducts] = useProducts();
 
-  const [product, dispatch] = useReducer(productReducer,{}, initializeProduct);
-
+  const [product, dispatch] = useReducer(productReducer, {}, initializeProduct);
+  // console.log(product);
   const handleAddProductForm = useCallback(
     (event: React.FormEvent) => {
       event.preventDefault();

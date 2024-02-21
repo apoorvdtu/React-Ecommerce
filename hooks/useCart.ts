@@ -1,6 +1,12 @@
 import { createContext, useContext } from "react";
 
-export const CartContext = createContext(null);
+export type Cart = {
+  id: string;
+  qty: number;
+};
+export const CartContext = createContext<[cart: Cart[], dispatch: React.Dispatch<any>] | null>(
+  null
+);
 
 export const useCart = () => {
   const context = useContext(CartContext);

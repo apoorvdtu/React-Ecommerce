@@ -1,14 +1,16 @@
 /* eslint-disable react/prop-types */
-import { ProductsContext, useProducts } from "../hooks/useProducts";
+import React from "react";
 
-import { NavBar, Products } from "../components/home";
+import { useProducts } from "../hooks/useProducts.ts";
 
-import { PRODUCT_CATEGORY_OPTIONS } from "../components/addProduct/constants";
+import { NavBar, Products } from "../components/home/index.ts";
+
+import { PRODUCT_CATEGORY_OPTIONS } from "../components/addProduct/constants.ts";
 
 import "../App.css";
 
 export function Home() {
-  const [products] = useProducts(ProductsContext);
+  const [products] = useProducts();
 
   const categoryWiseProducts = PRODUCT_CATEGORY_OPTIONS.map(({ value }) => {
     const categoryProducts = products.filter((product) => product.productCategory === value);

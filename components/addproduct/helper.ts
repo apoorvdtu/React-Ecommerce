@@ -11,13 +11,13 @@ export const addProductFormValidation = (product: Product) => {
   );
 };
 
-export const initializeProduct = () => {
+export const initializeProduct = (): Product => {
   return {
     productId: crypto.randomUUID(),
     productName: "",
-    productOriginalPrice: "",
-    productDiscountPrice: "",
+    productOriginalPrice: 0,
+    productDiscountPrice: 0,
     productCategory: PRODUCT_CATEGORY_OPTIONS[0].value,
-    productStockUnits: "",
+    productStockUnits: 0,
   };
 };

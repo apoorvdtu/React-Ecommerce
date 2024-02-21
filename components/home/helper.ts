@@ -1,19 +1,21 @@
+import { Cart } from "../../hooks/useCart.js";
+import { Product } from "../addProduct/interface.js";
 import { CART_DEFAULT_INITIAL_VALUE, CART_LOCAL_STORAGE_KEY } from "../utilities/constants.js";
 
-export const initializeCart = () => {
-  const cart = window.localStorage.getItem(CART_LOCAL_STORAGE_KEY)
-    ? JSON.parse(window.localStorage.getItem(CART_LOCAL_STORAGE_KEY))
-    : CART_DEFAULT_INITIAL_VALUE;
-  return cart;
+export const initializeCart = (): Cart[] => {
+  const cart = !window.localStorage.getItem(CART_LOCAL_STORAGE_KEY)
+    ? CART_DEFAULT_INITIAL_VALUE
+    : window.localStorage.getItem(CART_LOCAL_STORAGE_KEY);
+  return cart as Cart[];
 };
 
-export const addToCart = (cart, product, qty = 1) => {
+export const addToCart = (cart: Cart[], product: Product, qty = 1): Cart[] => {
   const cartItem = cart.find((cartItem) => cartItem.id === product.productId);
   if (product.productStockUnits < qty) {
     alert(`Max Quantities Available ${product.productStockUnits}`);
-    return;
+    return cart;
   }
-  let cartCopy = [];
+  let cartCopy: Cart[] = [];
   if (cartItem) {
     cartItem.qty += qty;
   } else {
@@ -29,9 +31,9 @@ export const addToCart = (cart, product, qty = 1) => {
   return cartCopy;
 };
 
-export const removeFromCart = (cart, product, qty = 1) => {
+export const removeFromCart = (cart: Cart[], product: Product, qty = 1): Cart[] => {
   const cartItem = cart.find((cartItem) => cartItem.id === product.productId);
-  let cartCopy = [];
+  let cartCopy: Cart[] = [];
   if (cartItem) {
     cartItem.qty -= qty;
   }
@@ -40,7 +42,7 @@ export const removeFromCart = (cart, product, qty = 1) => {
   return cartCopy;
 };
 
-export const deleteFromCart = (cart, product) => {
+export const deleteFromCart = (cart: Cart[], product: Product): Cart[] => {
   const cartItemIndex = cart.findIndex((cartItem) => cartItem.id === product.productId);
   const cartCopy = [...cart];
   cartCopy.splice(cartItemIndex, 1);
@@ -48,7 +50,7 @@ export const deleteFromCart = (cart, product) => {
   return cartCopy;
 };
 
-export const resetCart = () => {
+export const resetCart = (): Cart[] => {
   window.localStorage.setItem(CART_LOCAL_STORAGE_KEY, "[]");
   return [];
 };

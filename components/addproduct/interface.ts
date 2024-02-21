@@ -2,7 +2,7 @@ export interface Product {
   productId: string;
   productName: string;
   productCategory: string;
-  productOriginalPrice: string;
-  productDiscountPrice: string;
-  productStockUnits: string;
+  productOriginalPrice: number;
+  productDiscountPrice: number;
+  productStockUnits: number;
 }

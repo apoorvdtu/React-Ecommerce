@@ -1,4 +1,5 @@
 import { createContext, useContext } from "react";
+import { Product } from "../components/addProduct/interface";
 
 export const ProductsContext = createContext<
   null | [products: Product[], setProducts: (products: Product[]) => void]
