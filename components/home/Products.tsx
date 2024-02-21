@@ -1,14 +1,16 @@
-/* eslint-disable react/prop-types */
 import React from "react";
 
-import { ProductCard } from "./ProductCard.js";
+import { ProductCard } from "./ProductCard";
+
+import { Product } from "../../types/interface";
 
 import "./Products.css";
-import { Product } from "../addProduct/interface.js";
+
 type ProductsProps = {
   categoryName: string;
   products: Product[];
 };
+
 export const Products = ({ categoryName, products }: ProductsProps) => {
   return (
     <div className="products">

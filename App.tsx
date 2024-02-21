@@ -3,7 +3,9 @@ import { Outlet } from "react-router";
 
 import { ProductsContext } from "./hooks/useProducts.ts";
 import { useLocalStorage } from "./hooks/useLocalStorage.js";
-import { Cart, CartContext } from "./hooks/useCart.js";
+import { CartContext } from "./hooks/useCart.js";
+
+import { Cart, Product } from "./types/interface.ts";
 
 import { cartReducer } from "./components/home/reducer.js";
 import { initializeCart } from "./components/home/helper.js";
@@ -11,8 +13,6 @@ import {
   PRODUCTS_DEFAULT_INITIAL_VALUE,
   PRODUCTS_LOCAL_STORAGE_KEY,
 } from "./components/utilities/constants.js";
-
-import { Product } from "./components/addProduct/interface.ts";
 
 export function App() {
   const [cart, dispatch] = useReducer(cartReducer, {}, initializeCart);

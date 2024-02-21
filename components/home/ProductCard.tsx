@@ -1,8 +1,8 @@
-/* eslint-disable react/prop-types */
 import React from "react";
 
 import { useCart } from "../../hooks/useCart.ts";
-import { Product } from "../addProduct/interface.ts";
+
+import { Product } from "../../types/interface.ts";
 
 import { ACTIONS } from "./constants.ts";
 

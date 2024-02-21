@@ -6,3 +6,7 @@ export interface Product {
   productDiscountPrice: number;
   productStockUnits: number;
 }
+export type Cart = {
+  id: string;
+  qty: number;
+};

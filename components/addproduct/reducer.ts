@@ -1,7 +1,7 @@
 import { initializeProduct } from "./helper.js";
 
 import { ACTIONS } from "./constants.ts";
-import { Product } from "./interface.ts";
+import { Product } from "../../types/interface.ts";
 
 export type ProductAction = {
   type: string;

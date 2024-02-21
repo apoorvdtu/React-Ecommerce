@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import React from "react";
+
 import { useCart } from "../../hooks/useCart.ts";
 
 import { routerLinks } from "../../routerConfig.js";
@@ -7,7 +8,6 @@ import { routerLinks } from "../../routerConfig.js";
 import EcomLogo from "../../assets/EcomLogo.png";
 import SearchIcon from "./assets/searchicon.svg";
 import ShoppingCartIcon from "./assets/shoppingcart.png";
-
 import AddNewProductIcon from "./assets/addnewproduct.png";
 import LoginIcon from "./assets/login.png";
 

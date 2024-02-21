@@ -1,9 +1,7 @@
 import { createContext, useContext } from "react";
 
-export type Cart = {
-  id: string;
-  qty: number;
-};
+import { Cart } from "../types/interface";
+
 export const CartContext = createContext<[cart: Cart[], dispatch: React.Dispatch<any>] | null>(
   null
 );

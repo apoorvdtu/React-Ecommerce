@@ -1,5 +1,5 @@
-import { Cart } from "../../hooks/useCart.js";
-import { Product } from "../addProduct/interface.js";
+import { Cart, Product } from "../../types/interface.js";
+
 import { CART_DEFAULT_INITIAL_VALUE, CART_LOCAL_STORAGE_KEY } from "../utilities/constants.js";
 
 export const initializeCart = (): Cart[] => {
