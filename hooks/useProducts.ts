@@ -1,9 +1,9 @@
-import { createContext, useContext } from "react";
+import { Dispatch, SetStateAction, createContext, useContext } from "react";
 
 import { Product } from "../types/interface";
 
 export const ProductsContext = createContext<
-  null | [products: Product[], setProducts: (products: Product[]) => void]
+  null | [products: Product[], Dispatch<SetStateAction<Product[]>>]
 >(null);
 
 export const useProducts = () => {

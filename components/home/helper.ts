@@ -3,9 +3,8 @@ import { Cart, Product } from "../../types/interface.js";
 import { CART_DEFAULT_INITIAL_VALUE, CART_LOCAL_STORAGE_KEY } from "../utilities/constants.js";
 
 export const initializeCart = (): Cart[] => {
-  const cart = !window.localStorage.getItem(CART_LOCAL_STORAGE_KEY)
-    ? CART_DEFAULT_INITIAL_VALUE
-    : window.localStorage.getItem(CART_LOCAL_STORAGE_KEY);
+  const cartJSON = window.localStorage.getItem(CART_LOCAL_STORAGE_KEY);
+  const cart = cartJSON ? JSON.parse(cartJSON) : CART_DEFAULT_INITIAL_VALUE;
   return cart as Cart[];
 };
 

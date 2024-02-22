@@ -3,7 +3,7 @@ import { useProducts } from "../../hooks/useProducts.js";
 import { productReducer } from "./reducer.js";
 
 import {
-  ACTIONS,
+  PRODUCT_REDUCER_ACTIONS,
   EventIDActionsType,
   PRODUCT_ADDITION_FAILURE_MESSAGE,
   PRODUCT_ADDITION_SUCCESS_MESSAGE,
@@ -22,7 +22,7 @@ export const AddProductFormContainer = () => {
       event.preventDefault();
       if (addProductFormValidation(product)) {
         setProducts([...products, product]);
-        dispatch({ type: ACTIONS.RESET_STATE });
+        dispatch({ type: PRODUCT_REDUCER_ACTIONS.RESET_STATE });
         alert(PRODUCT_ADDITION_SUCCESS_MESSAGE);
       } else {
         alert(PRODUCT_ADDITION_FAILURE_MESSAGE);

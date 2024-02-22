@@ -4,7 +4,7 @@ import { useCart } from "../../hooks/useCart.ts";
 
 import { Product } from "../../types/interface.ts";
 
-import { ACTIONS } from "./constants.ts";
+import { CART_REDUCER_ACTIONS } from "./constants.ts";
 
 import "./ProductCard.css";
 type ProductCardProps = {
@@ -14,7 +14,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   const [, dispatch] = useCart();
 
   const handleAddToCart = () => {
-    dispatch({ type: ACTIONS.ADD_TO_CART, payload: product });
+    dispatch({ type: CART_REDUCER_ACTIONS.ADD_TO_CART, payload: product });
   };
   const { productName, productOriginalPrice, productDiscountPrice } = product;
 

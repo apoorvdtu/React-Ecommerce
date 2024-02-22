@@ -1,3 +1,4 @@
+import React from "react";
 import { Link } from "react-router-dom";
 
 import { routerLinks } from "../../routerConfig.js";
@@ -6,11 +7,11 @@ import Image from "react-bootstrap/Image";
 
 import EcomLogo from "../../assets/EcomLogo.png";
 
-export const AddProductHeader = () => {
+export const CartHeader = () => {
   return (
-    <div className="text-center">
+    <div className="text-center bg-white">
       <Link to={routerLinks.HOME.path}>
-        <Image src={EcomLogo} alt="Ecommerce Logo" fluid />
+        <Image src={EcomLogo} alt="Ecommerce Logo" />
       </Link>
     </div>
   );

@@ -10,3 +10,16 @@ export type Cart = {
   id: string;
   qty: number;
 };
+export type OrderItem = {
+  productId: string;
+  productName: string;
+  productQty: number;
+};
+export type Order = {
+  date: string;
+  items: OrderItem[];
+  totalDiscountPrice: number;
+  totalOriginalPrice: number;
+  discountPercentage: number;
+  discountValue: number;
+};

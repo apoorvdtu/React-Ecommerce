@@ -12,6 +12,7 @@ import { App } from "./App";
 // const AddProduct = lazy(() => import("./pages/AddProduct"));
 // const ErrorPage = lazy(() => import("./pages/ErrorPage"));
 import { AddProduct } from "./pages/AddProduct";
+import { Cart } from "./pages/Cart";
 
 export const routerLinks = {
   ADD_PRODUCT: {
@@ -24,7 +25,7 @@ export const routerLinks = {
   },
   CART: {
     path: "/cart",
-    element: <ErrorPage />,
+    element: <Cart />,
   },
 };
 export const routerConfig = [
@@ -32,20 +33,7 @@ export const routerConfig = [
     path: "/",
     element: <App />,
     errorElement: <ErrorPage />,
-    children: [
-      {
-        path: routerLinks.HOME.path,
-        element: routerLinks.HOME.element,
-      },
-      {
-        path: routerLinks.ADD_PRODUCT.path,
-        element: routerLinks.ADD_PRODUCT.element,
-      },
-      {
-        path: routerLinks.HOME.path,
-        element: routerLinks.HOME.element,
-      },
-    ],
+    children: [...Object.values(routerLinks)],
   },
 ];
 export const router = createBrowserRouter(routerConfig);
