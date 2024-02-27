@@ -1,5 +1,5 @@
-import { PRODUCT_CATEGORY_OPTIONS } from "./constants.js";
-import { Product } from "./interface.js";
+import { Product } from "../../types";
+import { PRODUCT_CATEGORY_OPTIONS } from "./constants";
 
 export const addProductFormValidation = (product: Product) => {
   const { productName, productOriginalPrice, productDiscountPrice, productStockUnits } = product;

@@ -1,7 +1,7 @@
-import { initializeProduct } from "./helper.js";
+import { initializeProduct } from "./helper";
 
-import { PRODUCT_REDUCER_ACTIONS } from "./constants.ts";
-import { Product } from "../../types/interface.ts";
+import { PRODUCT_REDUCER_ACTIONS } from "./constants";
+import { Product } from "../../types";
 
 export type ProductAction = {
   type: string;

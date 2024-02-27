@@ -1,4 +1,4 @@
-import React, { Dispatch } from "react";
+import React, { Dispatch, useCallback } from "react";
 
 import { Product } from "../../types/interface";
 
@@ -19,15 +19,19 @@ export const CartCard = ({ dispatch, product, productQty }: CardCardProps) => {
     productOriginalPrice,
     productStockUnits,
   } = product;
-  const increaseProductQuantity = () => {
+
+  const increaseProductQuantity = useCallback(() => {
     dispatch({ type: CART_REDUCER_ACTIONS.ADD_TO_CART, payload: product });
-  };
-  const decreaseProductQuantity = () => {
+  }, []);
+
+  const decreaseProductQuantity = useCallback(() => {
     dispatch({ type: CART_REDUCER_ACTIONS.REMOVE_FROM_CART, payload: product });
-  };
-  const deleteProduct = () => {
+  }, []);
+
+  const deleteProduct = useCallback(() => {
     dispatch({ type: CART_REDUCER_ACTIONS.DELETE_FROM_CART, payload: product });
-  };
+  }, []);
+
   return (
     <div className="cart-item">
       <div className="cart-item__product-info">

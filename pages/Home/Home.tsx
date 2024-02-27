@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 
-import { useProducts } from "../hooks/useProducts.ts";
+import { useProducts } from "../../hooks";
 
-import { NavBar, Products } from "../components/home/index.ts";
+import { NavBar, Products } from "../../components/home";
 
-import { PRODUCT_CATEGORY_OPTIONS } from "../components/addProduct/constants.ts";
+import { PRODUCT_CATEGORY_OPTIONS } from "../../components/addProduct";
 
-import "../App.css";
+import "../../App.css";
 
 export function Home() {
   const [products] = useProducts();
@@ -19,12 +19,13 @@ export function Home() {
       products: categoryProducts,
     };
   });
+
   return (
     <>
       <NavBar />
-      {categoryWiseProducts.map((props) => {
-        return <Products key={props.categoryName} {...props} />;
-      })}
+      {categoryWiseProducts.map((props) => (
+        <Products key={props.categoryName} {...props} />
+      ))}
     </>
   );
 }

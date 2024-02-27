@@ -1,28 +1,39 @@
-import React, { useReducer } from "react";
+import React, { useMemo, useReducer } from "react";
 import { Outlet } from "react-router";
 
-import { ProductsContext } from "./hooks/useProducts.ts";
-import { useLocalStorage } from "./hooks/useLocalStorage.js";
-import { CartContext } from "./hooks/useCart.js";
+import { useLocalStorage, CartContext, ProductsContext } from "./hooks/";
 
-import { cartReducer } from "./components/home/reducer.js";
-import { initializeCart } from "./components/home/helper.js";
+import { cartReducer, initializeCart } from "./components/home";
+
+import { CartContextProviderValueType, ProductContextProviderValueType } from "./types";
+
 import {
   PRODUCTS_DEFAULT_INITIAL_VALUE,
   PRODUCTS_LOCAL_STORAGE_KEY,
-} from "./components/utilities/constants.js";
+} from "./components/utilities/";
 
+import "./App.css";
 export function App() {
   const [cart, dispatch] = useReducer(cartReducer, {}, initializeCart);
+
   const [products, setProducts] = useLocalStorage(
     PRODUCTS_LOCAL_STORAGE_KEY,
     PRODUCTS_DEFAULT_INITIAL_VALUE
   );
-  console.log(typeof PRODUCTS_DEFAULT_INITIAL_VALUE);
+
+  const ProductContexProviderValue = useMemo(
+    (): ProductContextProviderValueType => [products, setProducts],
+    [products, setProducts]
+  );
+
+  const CartContexProviderValue = useMemo(
+    (): CartContextProviderValueType => [cart, dispatch],
+    [cart, dispatch]
+  );
 
   return (
-    <ProductsContext.Provider value={[products, setProducts]}>
-      <CartContext.Provider value={[cart, dispatch]}>
+    <ProductsContext.Provider value={ProductContexProviderValue}>
+      <CartContext.Provider value={CartContexProviderValue}>
         <Outlet />
       </CartContext.Provider>
     </ProductsContext.Provider>

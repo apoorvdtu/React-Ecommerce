@@ -1,4 +1,4 @@
-import { Cart, Product } from "../../types/interface";
+import { Cart, Product } from "../../types";
 import { Prices } from "./types";
 
 export const findPrice = (cart: Cart[], products: Product[]): Prices => {

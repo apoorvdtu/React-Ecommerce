@@ -1,12 +1,13 @@
-import React from "react";
-import { useCart } from "../../hooks/useCart";
-import { Cart, Order, Product } from "../../types/interface";
-import { useProducts } from "../../hooks/useProducts";
-import { findPrice } from "./helper";
-import { useLocalStorage } from "../../hooks/useLocalStorage";
-import { ORDERS_DEFAULT_INITIAL_VALUE, ORDERS_LOCAL_STORAGE_KEY } from "../utilities/constants";
+import React, { useCallback, useMemo } from "react";
+
 import { CartPrice } from "./CartPrice";
-import { CART_REDUCER_ACTIONS } from "../home/constants";
+
+import { useProducts, useCart, useLocalStorage } from "../../hooks";
+
+import { findPrice } from "./helper";
+import { ORDERS_DEFAULT_INITIAL_VALUE, ORDERS_LOCAL_STORAGE_KEY } from "../utilities/constants";
+import { Order } from "../../types/interface";
+import { CART_REDUCER_ACTIONS } from "../home/";
 
 export const CartPriceContainer = () => {
   const [cart, dispatch] = useCart();
@@ -15,9 +16,11 @@ export const CartPriceContainer = () => {
     ORDERS_LOCAL_STORAGE_KEY,
     ORDERS_DEFAULT_INITIAL_VALUE
   );
-  const prices = findPrice(cart, products);
+  const prices = useMemo(() => findPrice(cart, products), [cart, products]);
+
   const { totalDiscountPrice, totalOriginalPrice, discountPercentage, discountValue } = prices;
-  const placeOrderButtonOnClick = () => {
+
+  const placeOrderButtonOnClick = useCallback(() => {
     const order: Order = {
       date: Date().toString(),
       items: [],
@@ -26,6 +29,7 @@ export const CartPriceContainer = () => {
       discountPercentage,
       discountValue,
     };
+
     cart.forEach((cartItem) => {
       const qty = cartItem.qty;
       const product = products.find((product) => product.productId === cartItem.id);
@@ -38,9 +42,11 @@ export const CartPriceContainer = () => {
         });
       }
     });
+
     setOrders([...orders, order]);
     setProducts([...products]);
     dispatch({ type: CART_REDUCER_ACTIONS.RESET_STATE });
-  };
+  }, [cart, products, orders]);
+
   return <CartPrice prices={prices} placeOrderButtonOnClick={placeOrderButtonOnClick} />;
 };

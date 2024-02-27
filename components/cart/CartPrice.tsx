@@ -1,9 +1,11 @@
 import React from "react";
 import { Prices } from "./types";
+
 type CartPriceProps = {
   prices: Prices;
   placeOrderButtonOnClick: () => void;
 };
+
 export const CartPrice = ({ prices, placeOrderButtonOnClick }: CartPriceProps) => {
   const { totalDiscountPrice, totalOriginalPrice, discountPercentage, discountValue } = prices;
   return (

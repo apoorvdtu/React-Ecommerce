@@ -1,22 +1,23 @@
 import React, { useReducer, useCallback } from "react";
-import { useProducts } from "../../hooks/useProducts.js";
-import { productReducer } from "./reducer.js";
+
+import { useProducts } from "../../hooks";
+
+import { productReducer } from "./reducer";
 
 import {
   PRODUCT_REDUCER_ACTIONS,
   EventIDActionsType,
   PRODUCT_ADDITION_FAILURE_MESSAGE,
   PRODUCT_ADDITION_SUCCESS_MESSAGE,
-} from "./constants.js";
+} from "./constants";
 
-import { addProductFormValidation, initializeProduct } from "./helper.js";
-import { AddProductForm } from "./AddProductForm.tsx";
+import { addProductFormValidation, initializeProduct } from "./helper";
+import { AddProductForm } from "./AddProductForm";
 
 export const AddProductFormContainer = () => {
   const [products, setProducts] = useProducts();
 
   const [product, dispatch] = useReducer(productReducer, {}, initializeProduct);
-  // console.log(product);
   const handleAddProductForm = useCallback(
     (event: React.FormEvent) => {
       event.preventDefault();

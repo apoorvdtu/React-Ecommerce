@@ -1,8 +1,6 @@
-import { addToCart, deleteFromCart, resetCart, removeFromCart } from "./helper.ts";
-
-import { Cart, Product } from "../../types/interface.ts";
-
-import { CART_REDUCER_ACTIONS } from "./constants.ts";
+import { addToCart, deleteFromCart, resetCart, removeFromCart } from "./helper";
+import { Cart, Product } from "../../types/interface";
+import { CART_REDUCER_ACTIONS } from "./constants";
 
 export type CartReducerAction = {
   payload?: Product;

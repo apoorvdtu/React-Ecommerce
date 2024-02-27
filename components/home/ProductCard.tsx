@@ -1,21 +1,23 @@
-import React from "react";
+import React, { useCallback } from "react";
 
-import { useCart } from "../../hooks/useCart.ts";
+import { useCart } from "../../hooks";
 
-import { Product } from "../../types/interface.ts";
+import { Product } from "../../types/interface";
 
-import { CART_REDUCER_ACTIONS } from "./constants.ts";
+import { CART_REDUCER_ACTIONS } from "./constants";
 
 import "./ProductCard.css";
+
 type ProductCardProps = {
   product: Product;
 };
+
 export const ProductCard = ({ product }: ProductCardProps) => {
   const [, dispatch] = useCart();
 
-  const handleAddToCart = () => {
+  const handleAddToCart = useCallback(() => {
     dispatch({ type: CART_REDUCER_ACTIONS.ADD_TO_CART, payload: product });
-  };
+  }, [product]);
   const { productName, productOriginalPrice, productDiscountPrice } = product;
 
   return (

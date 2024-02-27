@@ -1,18 +1,16 @@
 import React from "react";
 
 import { createBrowserRouter } from "react-router-dom";
-// import { lazy } from "react";
 
-import { Home } from "./pages/Home";
-import { ErrorPage } from "./pages/ErrorPage";
+import { Home, ErrorPage, AddProduct, Cart } from "./pages";
 import { App } from "./App";
+
 // const AddProduct = lazy(() =>
 //   import("./pages/AddProduct").then((module) => ({ default: module.AddProduct }))
 // );
 // const AddProduct = lazy(() => import("./pages/AddProduct"));
 // const ErrorPage = lazy(() => import("./pages/ErrorPage"));
-import { AddProduct } from "./pages/AddProduct";
-import { Cart } from "./pages/Cart";
+// import { lazy } from "react";
 
 export const routerLinks = {
   ADD_PRODUCT: {
@@ -28,6 +26,7 @@ export const routerLinks = {
     element: <Cart />,
   },
 };
+
 export const routerConfig = [
   {
     path: "/",
@@ -36,4 +35,5 @@ export const routerConfig = [
     children: [...Object.values(routerLinks)],
   },
 ];
+
 export const router = createBrowserRouter(routerConfig);

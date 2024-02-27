@@ -3,8 +3,8 @@ import React from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-import { PRODUCT_CATEGORY_OPTIONS, PRODUCT_FORM_IDS } from "./constants.js";
-import { Product } from "../../types/interface.js";
+import { PRODUCT_CATEGORY_OPTIONS, PRODUCT_FORM_IDS } from "./constants";
+import { Product } from "../../types";
 
 interface AddProductFormProps {
   product: Product;

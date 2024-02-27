@@ -1,6 +1,6 @@
-import { Cart, Product } from "../../types/interface.js";
+import { Cart, Product } from "../../types";
 
-import { CART_DEFAULT_INITIAL_VALUE, CART_LOCAL_STORAGE_KEY } from "../utilities/constants.js";
+import { CART_DEFAULT_INITIAL_VALUE, CART_LOCAL_STORAGE_KEY } from "../utilities";
 
 export const initializeCart = (): Cart[] => {
   const cartJSON = window.localStorage.getItem(CART_LOCAL_STORAGE_KEY);

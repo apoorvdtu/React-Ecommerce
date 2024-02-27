@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import React from "react";
 
-import { useCart } from "../../hooks/useCart.ts";
+import { useCart } from "../../hooks";
 
-import { routerLinks } from "../../routerConfig.js";
+import { routerLinks } from "../../routerConfig";
 
 import EcomLogo from "../../assets/EcomLogo.png";
 import SearchIcon from "./assets/searchicon.svg";
@@ -15,6 +15,7 @@ import "./NavBar.css";
 
 export const NavBar = () => {
   const [cart] = useCart();
+
   return (
     <nav className="nav">
       <Link to={routerLinks.HOME.path}>
