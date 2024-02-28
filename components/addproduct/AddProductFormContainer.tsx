@@ -1,4 +1,4 @@
-import React, { useReducer, useCallback } from "react";
+import React, { useReducer, useCallback, ChangeEvent } from "react";
 
 import { useProducts } from "../../hooks";
 
@@ -33,7 +33,7 @@ export const AddProductFormContainer = () => {
   );
 
   const handleFormElementChange = useCallback(
-    (event) => {
+    (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
       const payload = event.target.value;
       const id = event.target.id;
       const type: string = EventIDActionsType.get(id)!;

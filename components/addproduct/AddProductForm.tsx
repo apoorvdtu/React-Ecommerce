@@ -8,8 +8,10 @@ import { Product } from "../../types";
 
 interface AddProductFormProps {
   product: Product;
-  handleAddProductForm: (event: React.FormEvent<HTMLFormElement>) => void;
-  handleFormElementChange: (event: React.ChangeEvent) => void;
+  handleAddProductForm: (event: React.FormEvent<HTMLFormElement | HTMLSelectElement>) => void;
+  handleFormElementChange: (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => void;
 }
 
 export const AddProductForm = ({
