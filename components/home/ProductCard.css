@@ -24,7 +24,7 @@
 }
 .product__add-to-cart-btn {
   background-color: rgb(0, 174, 255);
-  color: white;
+  color: goldenrod;
   font-weight: bold;
   padding: 0.2rem;
   cursor: pointer;

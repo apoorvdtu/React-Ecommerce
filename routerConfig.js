@@ -1,15 +1,16 @@
-import { createBrowserRouter } from "react-router-dom";
-// import { lazy } from "react";
+import React from "react";
 
-import { Home } from "./pages/Home";
-import { ErrorPage } from "./pages/ErrorPage";
+import { createBrowserRouter } from "react-router-dom";
+
+import { Home, ErrorPage, AddProduct, Cart } from "./pages";
 import { App } from "./App";
+
 // const AddProduct = lazy(() =>
 //   import("./pages/AddProduct").then((module) => ({ default: module.AddProduct }))
 // );
 // const AddProduct = lazy(() => import("./pages/AddProduct"));
 // const ErrorPage = lazy(() => import("./pages/ErrorPage"));
-import { AddProduct } from "./pages/AddProduct";
+// import { lazy } from "react";
 
 export const routerLinks = {
   ADD_PRODUCT: {
@@ -22,28 +23,17 @@ export const routerLinks = {
   },
   CART: {
     path: "/cart",
-    element: <ErrorPage />,
+    element: <Cart />,
   },
 };
+
 export const routerConfig = [
   {
     path: "/",
     element: <App />,
     errorElement: <ErrorPage />,
-    children: [
-      {
-        path: routerLinks.HOME.path,
-        element: routerLinks.HOME.element,
-      },
-      {
-        path: routerLinks.ADD_PRODUCT.path,
-        element: routerLinks.ADD_PRODUCT.element,
-      },
-      {
-        path: routerLinks.HOME.path,
-        element: routerLinks.HOME.element,
-      },
-    ],
+    children: [...Object.values(routerLinks)],
   },
 ];
+
 export const router = createBrowserRouter(routerConfig);
