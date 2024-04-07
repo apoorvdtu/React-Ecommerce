@@ -1,0 +1,107 @@
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: white;
+  padding: 1rem;
+}
+
+.nav * {
+  background-color: white;
+}
+
+.nav__logo {
+  width: 10rem;
+}
+
+.nav__search-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: baseline;
+  border: 1px solid grey;
+  border-radius: 1rem;
+  width: 30rem;
+  padding: 0.25rem;
+  background-color: rgb(207, 207, 207);
+  cursor: pointer;
+}
+
+.nav__search-icon {
+  width: 2.4rem;
+  background-color: rgb(207, 207, 207);
+  cursor: pointer;
+}
+
+.nav__search-input {
+  padding: 0.5rem;
+  width: 25rem;
+  height: 2rem;
+  border: 0px;
+  /* line-height: 2; */
+  font-size: 1.25rem;
+  background-color: rgb(207, 207, 207);
+}
+
+.nav__search-input::placeholder {
+  font-size: 1.25rem;
+}
+
+.nav__search-input:focus {
+  outline: none;
+}
+
+.nav__login {
+  display: flex;
+  position: relative;
+  align-items: center;
+  cursor: pointer;
+}
+
+.nav__login-btn,
+.nav__login-icon {
+  /* padding: 1rem; */
+  width: 2rem;
+  margin-right: 0.25rem;
+}
+
+.nav__cart-icon {
+  width: 1.75rem;
+  margin-right: 0.25rem;
+}
+
+.nav__cart {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.nav__cart-icon-wrapper {
+  position: relative;
+}
+
+.nav__cart-count {
+  position: absolute;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  /* font-size: rem; */
+  height: 1rem;
+  width: 1rem;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  top: -0.1rem;
+  right: 0.2rem;
+}
+
+.nav__add-product {
+  display: flex;
+  align-items: center;
+}
+
+.nav__add-product-icon {
+  width: 2rem;
+  margin-right: 0.25rem;
+}

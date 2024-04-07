@@ -1,0 +1,22 @@
+.products__wrapper {
+  display: flex;
+  width: fit-content;
+  overflow-x: scroll;
+}
+.products__wrapper-name {
+  font-size: 2rem;
+}
+.products * {
+  background-color: white;
+}
+.products {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem 8rem;
+  margin-bottom: 1rem;
+  background-color: white;
+  padding-top: 2rem;
+  padding-left: 1rem;
+  padding-bottom: 1rem;
+  overflow-x: scroll;
+}
